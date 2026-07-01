@@ -1,65 +1,98 @@
-import Image from "next/image";
+import { ContactLink } from "../components/contact/contact"
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="w-full max-w-full bg-surface-page rounded-2xl overflow-hidden border-b-[0.5px] border-b-border">
+      <nav className="flex justify-between items-center bg-surface-page px-5 py-4 border-b-[0.5px] border-b-border sticky top-0 z-50 ">
+        <span className="font-(family-name:--font-display) text-sm text-(--color-red-400)">_monportfolio</span>
+        <ul className="hidden ">
+          <li>Accueil</li>
+          <li>À propos</li>
+          <li>Projets</li>
+          <li>Compétences</li>
+          <li>Parcours</li>
+          <li>Contact</li>
+        </ul>
+        <span className="inline-flex items-center gap-1.5 text-xs text-[#3B6D11] bg-[rgba(59,109,17,0.08)] border-[0.5px] border-[rgba(59,109,17,0.2)] px-3 py-1 rounded-full">
+          <span className="size-[7px] rounded-full bg-[#5fc47f] shrink-0"></span>
+          Disponible
+        </span>
+      </nav>
+      <div className="px-5 pt-12 pb-10">
+        <p className="text-body text-gray-600 leading-relaxed max-w-[520px] mb-[36px]">// développeur fullstack</p>
+        <h1 className="font-display text-[clamp(28px,5vw,42px)] font-medium text-gray-900 leading-[1.1] tracking-[-0.02em] mb-5">Je construis des<br></br>apps qui durent
+          <span className="inline-block w-[3px] h-[0.9em] bg-red-400 ml-1 align-middle animate-[blink_1.1s_step-end_infinite]"></span>
+        </h1>
+        <p className="text-body text-gray-600 leading-[1.7] max-w-[520px] mb-[36px]">
+          Passionné par la qualité du code et l'expérience utilisateur.
+          Je conçois des interfaces rapides et des APIs robustes, du prototype à la production.
+        </p>
+        <div className="flex gap-3 flex-wrap mb-[36px]">
+          <button className="font-body text-code font-medium py-[11px] px-[22px] rounded-md bg-red-400 text-white border-none cursor-pointer transition-colors duration-[150ms]">Voir mes projets</button>
+          <button className="font-body text-code font-medium py-[11px] px-[22px] rounded-md bg-transparent text-red-400 border border-brand-border cursor-pointer transition-colors duration-[150ms]">Me contacter</button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="stack-pills flex gap-2 flex-wrap">
+          <span>React</span>
+          <span>Node.js</span>
+          <span>TypeScript</span>
+          <span>PostgreSQL</span>
+          <span>Docker</span>
         </div>
-      </main>
+      </div>
+      <div className="px-5 py-10" id="stats">
+        <span className="bg-surface-subtle font-(family-name:--font-display) text-[11px] font-medium tracking-[.07em] uppercase text-(--color-red-400) block mb-[10px]">
+          // en chiffres
+        </span>
+      </div>
+      <div className="border-t border-t-line [border-top-width:0.5px]" id="projects"></div>
+      <div className="px-5 py-10 border-t border-t-line [border-top-width:0.5px]" id="contacts">
+        <span className="font-display text-[11px] font-medium tracking-[0.07em] uppercase text-red-400 block mb-2.5">// contact</span>
+        <h2 className="text-2xl font-medium text-gray-900 leading-[1.2] tracking-[-0.01em] mb-7">Travaillons ensemble</h2>
+        <div className="grid grid-cols-1">
+          <ContactLink icon="✉️" label="email" value="hello@monportfolio.dev" />
+          <ContactLink icon="🐙" label="GitHub" value="github.com/monprofil" />
+          <ContactLink icon="💼" label="LinkedIn" value="linkedin.com/in/monprofil" />
+          <ContactLink icon="📄" label="CV" value="Télécharger le PDF" />
+        </div>
+      </div>
+      <footer className="flex px-5 py-4 flex-col gap-2 text-center">
+        <span className="font-[var(--font-display)] text-[12px] text-[var(--color-gray-400)]">_monportfolio
+          <span>.</span>
+           2026
+        </span>
+        <span className="font-[var(--font-display)] text-[12px] text-[var(--color-gray-400)]"></span>
+      </footer>
     </div>
   );
 }
+
+/* 
+<Link href="" className="contact-item">
+            <div></div>
+            <div>
+              <p>Email</p>
+              <p>hello@monportfolio.dev</p>
+            </div>
+          </Link>
+          <Link href="">
+            <div></div>
+            <div>
+              <p>GitHub</p>
+              <p>github.com/monprofil</p>
+            </div>
+          </Link>
+          <Link href="">
+          <div></div>
+          <div>
+            <p>LinkedIn</p>
+            <p>linkedin.com/in/monprofil</p>
+          </div>
+          </Link>
+          <Link href="">
+            <div></div>
+            <div>
+              <p>CV</p>
+              <p>Télécharger le PDF</p>
+            </div>
+          </Link>
+*/
