@@ -1,6 +1,6 @@
 const CONTACTS = [
-  { icon: "✉️", label: "Email", value: "hello@monportfolio.dev", href: "mailto:hello@monportfolio.dev" },
-  { icon: "🐙", label: "GitHub", value: "github.com/monprofil", href: "https://github.com/monprofil", external: true },
+  { icon: "✉️", label: "Email", value: "contact.siffleurkevin@gmail.com", href: "mailto:contact.siffleurkevin@gmail.com" },
+  { icon: "🐙", label: "GitHub", value: "https://github.com/Moltozor", href: "https://github.com/Moltozor", external: true },
   { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/monprofil", href: "https://linkedin.com/in/monprofil", external: true },
   { icon: "📄", label: "CV", value: "Télécharger le PDF", href: "#" },
 ]

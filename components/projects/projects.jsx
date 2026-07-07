@@ -1,21 +1,23 @@
+import Image from "next/image"
+
 const PROJECTS = [
   {
-    icon: "📊",
-    name: "Dashboard SaaS",
-    description: "Interface analytics temps réel avec visualisations interactives.",
-    tags: ["React", "D3", "Node"],
+    image: "/projects/dashboard-saas.png",
+    name: "Ohmyfood",
+    description: "Conception mobile-first et responsive design, UX.",
+    tags: ["Html", "Css"],
   },
   {
-    icon: "⚡",
-    name: "API REST",
-    description: "Backend scalable avec auth JWT et rate limiting intégré.",
-    tags: ["Express", "Postgres"],
+    image: "/projects/nicholas-green.png",
+    name: "Photographe Nina Carducci",
+    description: "Optimisations, SEO, recommandations.",
+    tags: ["Microdata", "Rich snippet"],
   },
   {
-    icon: "📱",
-    name: "App mobile",
-    description: "Application cross-platform publiée sur iOS et Android.",
-    tags: ["React Native", "TS"],
+    image: "/projects/accommodation.jpg",
+    name: "Kasa",
+    description: "Intégration du design",
+    tags: ["React", "Sass"],
   },
 ]
 
@@ -26,15 +28,24 @@ export const Projects = () => {
       <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">Projets récents</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {PROJECTS.map((project) => (
-          <div key={project.name} className="bg-white/5 border border-white/10 border-l-2 border-l-red-500 rounded-lg p-5">
-            <div className="w-9 h-9 rounded-md bg-red-500/10 flex items-center justify-center mb-4 text-lg">
-              {project.icon}
-            </div>
-            <p className="text-white font-medium mb-2">{project.name}</p>
-            <p className="text-white/50 text-sm leading-relaxed mb-4">{project.description}</p>
-            <div className="flex flex-wrap gap-1.5">
+          <div
+            key={project.name}
+            className="group relative overflow-hidden min-h-[260px] flex flex-col justify-end border border-white/10 border-l-2 border-l-red-500 rounded-lg p-5 transition-colors duration-300 hover:border-white/20"
+          >
+            <Image
+              src={project.image}
+              alt={project.name}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover -z-20 transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/40 to-black/5 transition-opacity duration-300 group-hover:opacity-40" />
+            <div className="absolute inset-x-0 bottom-0 h-2/3 -z-10 bg-gradient-to-t from-black/95 via-black/60 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
+            <p className="relative text-white font-medium mb-2 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">{project.name}</p>
+            <p className="relative text-white/90 text-sm leading-relaxed mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">{project.description}</p>
+            <div className="relative flex flex-wrap gap-1.5">
               {project.tags.map((tag) => (
-                <span key={tag} className="font-mono text-[11px] px-2 py-0.5 rounded-sm bg-red-500/10 text-red-400">
+                <span key={tag} className="font-mono text-[11px] px-2 py-0.5 rounded-sm bg-black/50 text-red-300">
                   {tag}
                 </span>
               ))}

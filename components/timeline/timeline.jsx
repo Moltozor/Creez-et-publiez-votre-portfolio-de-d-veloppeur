@@ -1,7 +1,5 @@
 const TIMELINE = [
-  { year: "2024 — auj.", title: "Développeur Fullstack", org: "Entreprise à renseigner" },
-  { year: "2022 — 2024", title: "Développeur Frontend", org: "Entreprise à renseigner" },
-  { year: "2021 — 2022", title: "Formation développeur web", org: "École à renseigner" },
+  { year: "2025 — 2026", title: "Formation intégrateur web", org: "Openclassrooms" },
 ]
 
 export const Timeline = () => {

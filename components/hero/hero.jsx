@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { ParticleBackground } from "../particle-background/particleBackground"
 
 const TITLE = "Des sites qui parlent avant les mots."
 const BASE_DELAY_MS = 75
@@ -55,24 +56,25 @@ export const Hero = () => {
   }, [])
 
   return (
-    <section id="accueil" className="min-h-[90vh] flex flex-col justify-center px-5 py-20 sm:px-10 sm:py-32">
-      <p className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-red-500 mb-4">
+    <section id="accueil" className="relative overflow-hidden min-h-[90vh] flex flex-col justify-center px-5 py-20 sm:px-10 sm:py-32">
+      <ParticleBackground />
+      <p className="relative z-10 font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-red-500 mb-4">
         {/* Placeholder : titre à personnaliser */}
         // développeur frontend
       </p>
-      <h1 className="font-[family-name:--font-monogram] italic font-bold text-4xl sm:text-6xl text-white leading-tight mb-6 max-w-2xl min-h-[2.4em] sm:min-h-[1.2em]">
+      <h1 className="relative z-10 font-[family-name:--font-monogram] italic font-bold text-4xl sm:text-6xl text-white leading-tight mb-6 max-w-2xl min-h-[2.4em] sm:min-h-[1.2em]">
         {typed}
         <span className="inline-block w-[3px] h-[0.9em] bg-red-500 ml-1 align-middle animate-[blink_1s_step-end_infinite]" />
       </h1>
       <p
-        className={`text-white/60 text-base sm:text-lg max-w-xl mb-8 leading-relaxed transition-all duration-700 motion-reduce:transition-none ${
+        className={`relative z-10 text-white/60 text-base sm:text-lg max-w-xl mb-8 leading-relaxed transition-all duration-700 motion-reduce:transition-none ${
           showIntro ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         }`}
       >
         {/* Placeholder : présentation courte à remplacer */}
         Le web est ma toile, le code mon pinceau, l'expérience utilisateur ma signature.
       </p>
-      <div className="flex flex-wrap gap-4">
+      <div className="relative z-10 flex flex-wrap gap-4">
         <a
           href="#projets"
           className="inline-block px-6 py-3 rounded-md bg-red-500 text-white text-sm font-medium no-underline transition-colors duration-150 hover:bg-red-600"

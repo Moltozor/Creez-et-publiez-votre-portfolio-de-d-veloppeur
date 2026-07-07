@@ -8,16 +8,36 @@ const DESKTOP_BREAKPOINT = 1024
 const MAX_LINE_DISTANCE = 140
 const MOUSE_RADIUS = 120
 
+const COLOR_CYCLE = [
+  [59, 130, 246], // bleu
+  [255, 255, 255], // blanc
+  [239, 68, 68], // rouge
+]
+const COLOR_CYCLE_DURATION = 12000
+
+const lerp = (a, b, t) => a + (b - a) * t
+
+const getCycleColor = (elapsed) => {
+  const segmentDuration = COLOR_CYCLE_DURATION / COLOR_CYCLE.length
+  const t = (elapsed % COLOR_CYCLE_DURATION) / segmentDuration
+  const index = Math.floor(t)
+  const localT = t - index
+  const [r1, g1, b1] = COLOR_CYCLE[index]
+  const [r2, g2, b2] = COLOR_CYCLE[(index + 1) % COLOR_CYCLE.length]
+  return [lerp(r1, r2, localT), lerp(g1, g2, localT), lerp(b1, b2, localT)]
+}
+
 export const ParticleBackground = () => {
   const canvasRef = useRef(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
+    const container = canvas.parentElement
     const ctx = canvas.getContext("2d")
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-    let width = window.innerWidth
-    let height = window.innerHeight
+    let width = container.clientWidth
+    let height = container.clientHeight
     let animationId
     const mouse = { x: -9999, y: -9999 }
 
@@ -33,10 +53,11 @@ export const ParticleBackground = () => {
     })
 
     let particles = Array.from({ length: getParticleCount() }, makeParticle)
+    const startTime = performance.now()
 
     const resize = () => {
-      width = window.innerWidth
-      height = window.innerHeight
+      width = container.clientWidth
+      height = container.clientHeight
       canvas.width = width
       canvas.height = height
 
@@ -48,8 +69,9 @@ export const ParticleBackground = () => {
     resize()
 
     const handleMouseMove = (e) => {
-      mouse.x = e.clientX
-      mouse.y = e.clientY
+      const rect = canvas.getBoundingClientRect()
+      mouse.x = e.clientX - rect.left
+      mouse.y = e.clientY - rect.top
     }
     const handleMouseLeave = () => {
       mouse.x = -9999
@@ -58,6 +80,8 @@ export const ParticleBackground = () => {
 
     const drawFrame = ({ interactive }) => {
       ctx.clearRect(0, 0, width, height)
+
+      const [cr, cg, cb] = getCycleColor(performance.now() - startTime)
 
       for (const p of particles) {
         if (interactive) {
@@ -81,7 +105,7 @@ export const ParticleBackground = () => {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        ctx.fillStyle = "rgba(255, 255, 255, 0.45)"
+        ctx.fillStyle = `rgba(${cr}, ${cg}, ${cb}, 0.45)`
         ctx.fill()
       }
 
@@ -94,7 +118,7 @@ export const ParticleBackground = () => {
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 * (1 - dist / MAX_LINE_DISTANCE)})`
+            ctx.strokeStyle = `rgba(${cr}, ${cg}, ${cb}, ${0.12 * (1 - dist / MAX_LINE_DISTANCE)})`
             ctx.lineWidth = 1
             ctx.stroke()
           }
@@ -102,10 +126,12 @@ export const ParticleBackground = () => {
       }
     }
 
+    const resizeObserver = new ResizeObserver(resize)
+    resizeObserver.observe(container)
+
     if (prefersReducedMotion) {
       drawFrame({ interactive: false })
-      window.addEventListener("resize", resize)
-      return () => window.removeEventListener("resize", resize)
+      return () => resizeObserver.disconnect()
     }
 
     const animate = () => {
@@ -114,22 +140,21 @@ export const ParticleBackground = () => {
     }
     animate()
 
-    window.addEventListener("resize", resize)
-    window.addEventListener("mousemove", handleMouseMove)
-    window.addEventListener("mouseleave", handleMouseLeave)
+    container.addEventListener("mousemove", handleMouseMove)
+    container.addEventListener("mouseleave", handleMouseLeave)
 
     return () => {
       cancelAnimationFrame(animationId)
-      window.removeEventListener("resize", resize)
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("mouseleave", handleMouseLeave)
+      resizeObserver.disconnect()
+      container.removeEventListener("mousemove", handleMouseMove)
+      container.removeEventListener("mouseleave", handleMouseLeave)
     }
   }, [])
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10 pointer-events-none"
+      className="absolute inset-0 -z-10 pointer-events-none"
       aria-hidden="true"
     />
   )
