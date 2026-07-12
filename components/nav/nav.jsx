@@ -1,18 +1,43 @@
 "use client"
 
 import { useState } from "react"
+import { useLanguage } from "../language/LanguageProvider"
 
-const LINKS = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#a-propos", label: "À propos" },
-  { href: "#projets", label: "Projets" },
-  { href: "#competences", label: "Compétences" },
-  { href: "#parcours", label: "Parcours" },
-  { href: "#contact", label: "Contact" },
-]
+const LINK_KEYS = ["accueil", "a-propos", "projets", "competences", "parcours", "contact"]
+
+const LanguageSwitch = ({ className = "" }) => {
+  const { language, setLanguage } = useLanguage()
+
+  return (
+    <div className={`flex items-center gap-1 font-mono text-xs ${className}`}>
+      <button
+        type="button"
+        onClick={() => setLanguage("fr")}
+        aria-pressed={language === "fr"}
+        className={`px-1.5 py-0.5 rounded-sm transition-colors duration-150 cursor-pointer ${
+          language === "fr" ? "text-red-500" : "text-white/40 hover:text-white/70"
+        }`}
+      >
+        FR
+      </button>
+      <span className="text-white/20">/</span>
+      <button
+        type="button"
+        onClick={() => setLanguage("en")}
+        aria-pressed={language === "en"}
+        className={`px-1.5 py-0.5 rounded-sm transition-colors duration-150 cursor-pointer ${
+          language === "en" ? "text-red-500" : "text-white/40 hover:text-white/70"
+        }`}
+      >
+        EN
+      </button>
+    </div>
+  )
+}
 
 export const Nav = () => {
   const [open, setOpen] = useState(false)
+  const { t } = useLanguage()
 
   const closeMenu = () => setOpen(false)
 
@@ -31,7 +56,7 @@ export const Nav = () => {
           type="button"
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
-          aria-label="Ouvrir le menu"
+          aria-label={t.nav.openMenu}
           className="sm:hidden flex flex-col gap-1.5 w-6 cursor-pointer"
         >
           <span className={`h-px w-full bg-white transition-transform duration-200 ${open ? "translate-y-2 rotate-45" : ""}`} />
@@ -39,33 +64,39 @@ export const Nav = () => {
           <span className={`h-px w-full bg-white transition-transform duration-200 ${open ? "-translate-y-2 -rotate-45" : ""}`} />
         </button>
 
-        <ul className="hidden sm:flex gap-8 list-none">
-          {LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-white/70 no-underline transition-colors duration-150 hover:text-red-500"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden sm:flex items-center gap-8">
+          <ul className="flex gap-8 list-none">
+            {LINK_KEYS.map((key) => (
+              <li key={key}>
+                <a
+                  href={`#${key}`}
+                  className="text-sm text-white/70 no-underline transition-colors duration-150 hover:text-red-500"
+                >
+                  {t.nav.links[key]}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <LanguageSwitch />
+        </div>
       </nav>
 
       {open && (
         <ul className="sm:hidden flex flex-col gap-1 px-5 pb-5 list-none">
-          {LINKS.map((link) => (
-            <li key={link.href}>
+          {LINK_KEYS.map((key) => (
+            <li key={key}>
               <a
-                href={link.href}
+                href={`#${key}`}
                 onClick={closeMenu}
                 className="block py-2 text-base text-white/80 no-underline transition-colors duration-150 hover:text-red-500"
               >
-                {link.label}
+                {t.nav.links[key]}
               </a>
             </li>
           ))}
+          <li className="pt-2">
+            <LanguageSwitch />
+          </li>
         </ul>
       )}
     </header>

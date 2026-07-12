@@ -1,19 +1,25 @@
+"use client"
+
+import { useLanguage } from "../language/LanguageProvider"
+
 const CONTACTS = [
-  { icon: "✉️", label: "Email", value: "contact.siffleurkevin@gmail.com", href: "mailto:contact.siffleurkevin@gmail.com" },
-  { icon: "🐙", label: "GitHub", value: "https://github.com/Moltozor", href: "https://github.com/Moltozor", external: true },
-  { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/monprofil", href: "https://linkedin.com/in/monprofil", external: true },
-  { icon: "📄", label: "CV", value: "Télécharger le PDF", href: "#" },
+  { icon: "✉️", key: "Email", value: "contact.siffleurkevin@gmail.com", href: "mailto:contact.siffleurkevin@gmail.com" },
+  { icon: "🐙", key: "GitHub", value: "https://github.com/Moltozor", href: "https://github.com/Moltozor", external: true },
+  { icon: "💼", key: "LinkedIn", value: "linkedin.com/in/monprofil", href: "https://linkedin.com/in/monprofil", external: true },
+  /*{ icon: "📄", key: "CV", href: "#" },*/
 ]
 
 export const Contact = () => {
+  const { t } = useLanguage()
+
   return (
-    <section id="contact" className="px-5 py-16 sm:px-10 sm:py-24 border-t border-white/10">
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-red-500 mb-3">// contact</p>
-      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">Travaillons ensemble</h2>
+    <footer id="contact" className="px-5 py-16 sm:px-10 sm:py-24 border-t border-white/10">
+      <p className="font-mono text-xs uppercase tracking-[0.2em] text-red-500 mb-3">{t.contact.eyebrow}</p>
+      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">{t.contact.heading}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {CONTACTS.map((contact) => (
           <a
-            key={contact.label}
+            key={contact.key}
             href={contact.href}
             target={contact.external ? "_blank" : undefined}
             rel={contact.external ? "noopener" : undefined}
@@ -23,12 +29,12 @@ export const Contact = () => {
               {contact.icon}
             </div>
             <div>
-              <p className="text-white/40 text-xs mb-0.5">{contact.label}</p>
-              <p className="text-white text-sm font-medium">{contact.value}</p>
+              <p className="text-white/40 text-xs mb-0.5">{t.contact.labels[contact.key]}</p>
+              <p className="text-white text-sm font-medium">{contact.key === "CV" ? t.contact.cvValue : contact.value}</p>
             </div>
           </a>
         ))}
       </div>
-    </section>
+    </footer>
   )
 }
