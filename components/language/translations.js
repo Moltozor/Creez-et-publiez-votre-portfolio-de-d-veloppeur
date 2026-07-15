@@ -13,8 +13,8 @@ export const TRANSLATIONS = {
     },
     hero: {
       eyebrow: "// développeur frontend",
-      title: "Des sites qui parlent avant les mots.",
-      intro: "Le web est ma toile, le code mon pinceau, l'expérience utilisateur ma signature.",
+      title: "Siffleur Kevin",
+      intro: "Développeur passionné par le code, j'aime rendre mes interfaces vivantes pour enrichir l'expérience utilisateur.",
       ctaProjects: "Voir mes projets",
       ctaContact: "Me contacter",
     },
@@ -75,8 +75,9 @@ export const TRANSLATIONS = {
     },
     hero: {
       eyebrow: "// frontend developer",
+      name: "Siffleur Kevin",
       title: "Websites that speak before words.",
-      intro: "The web is my canvas, code is my brush, user experience is my signature.",
+      intro: "A developer passionate about code, I love bringing interfaces to life to enrich the user experience.",
       ctaProjects: "View my projects",
       ctaContact: "Get in touch",
     },

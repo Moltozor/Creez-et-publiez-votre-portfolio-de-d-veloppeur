@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from "react"
 import { ParticleBackground } from "../particle-background/particleBackground"
 import { useLanguage } from "../language/LanguageProvider"
 
+// Gère l'effet de frappe au clavier à l'apparition du site
 const BASE_DELAY_MS = 75
 const JITTER_MS = 70
 const PAUSE_CHARS = new Set([" ", ",", "."])
 const PAUSE_EXTRA_MS = 180
+// -----------------------------------------
+
 // Attend que l'écran de chargement ait disparu (voir DURATION_MS + FADE_MS dans loadingScreen.jsx)
 const START_DELAY_MS = 2300
 
