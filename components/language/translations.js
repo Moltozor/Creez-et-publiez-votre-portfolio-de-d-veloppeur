@@ -75,8 +75,7 @@ export const TRANSLATIONS = {
     },
     hero: {
       eyebrow: "// frontend developer",
-      name: "Siffleur Kevin",
-      title: "Websites that speak before words.",
+      title: "Siffleur Kevin",
       intro: "A developer passionate about code, I love bringing interfaces to life to enrich the user experience.",
       ctaProjects: "View my projects",
       ctaContact: "Get in touch",
@@ -84,7 +83,7 @@ export const TRANSLATIONS = {
     about: {
       eyebrow: "// about",
       heading: "Who am I?",
-      text: "A passionate frontend developer, I craft web experiences that make people want to stay. I enjoy exploring a design idea just as much as sculpting every interaction until it feels right.",
+      text: "I am a creator of user-friendly, engaging interfaces. Letting users enjoy navigation that's both simple and pleasant is what sets my profile apart.",
     },
     projects: {
       eyebrow: "// projects",
