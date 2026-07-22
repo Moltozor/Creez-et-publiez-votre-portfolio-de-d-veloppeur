@@ -39,6 +39,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    "geo.region": "FR",
+    "geo.placename": "Saint-Barthélémy",
+  },
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -66,6 +70,12 @@ const personJsonLd = {
   jobTitle: "Développeur Frontend",
   url: SITE_URL,
   email: "mailto:contact.siffleurkevin@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "FR",
+    addressLocality: "Saint-Barthélémy",
+    postalCode: "97133",
+  },
   sameAs: ["https://github.com/Moltozor"],
 }
 

@@ -5,7 +5,7 @@ import { useLanguage } from "../language/LanguageProvider"
 const CONTACTS = [
   { icon: "✉️", key: "Email", value: "contact.siffleurkevin@gmail.com", href: "mailto:contact.siffleurkevin@gmail.com" },
   { icon: "🐙", key: "GitHub", value: "https://github.com/Moltozor", href: "https://github.com/Moltozor", external: true },
-  { icon: "💼", key: "LinkedIn", value: "https://www.linkedin.com/feed/", href: "https://www.linkedin.com/feed/", external: true },
+  { icon: "💼", key: "LinkedIn", value: "LinkedIn", href: "https://www.linkedin.com/in/kevin-siffleur-a83573422/", external: true },
   /*{ icon: "📄", key: "CV", href: "#" },*/
 ]
 

@@ -21,7 +21,7 @@ export const TRANSLATIONS = {
     about: {
       eyebrow: "// à propos",
       heading: "Qui suis-je ?",
-      text: "Développeur frontend passionné, je façonne des expériences web qui donnent envie de rester. J'aime autant explorer une idée de design que sculpter chaque interaction jusqu'à ce qu'elle se sente juste.",
+      text: "Je suis un créateur d'interfaces conviviales et attrayantes. Permettre à l'utilisateur de profiter d'une navigation à la fois simple et agréable est ce qui distingue mon profil.",
     },
     projects: {
       eyebrow: "// réalisations",
