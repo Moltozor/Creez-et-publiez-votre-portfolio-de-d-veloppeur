@@ -15,35 +15,21 @@ export default function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
+          alignItems: "center",
           justifyContent: "center",
           background: "#000000",
-          padding: "80px",
         }}
       >
         <div
           style={{
             display: "flex",
-            fontSize: 32,
-            letterSpacing: 4,
-            textTransform: "uppercase",
-            color: "#ef4444",
-            marginBottom: 24,
-          }}
-        >
-          // développeur frontend
-        </div>
-        <div
-          style={{
-            display: "flex",
-            fontSize: 96,
+            fontSize: 320,
             fontWeight: 700,
             fontStyle: "italic",
-            color: "#ffffff",
           }}
         >
-          Siffleur Kevin
+          <span style={{ color: "#ffffff" }}>S</span>
+          <span style={{ color: "#ef4444" }}>K</span>
         </div>
       </div>
     ),

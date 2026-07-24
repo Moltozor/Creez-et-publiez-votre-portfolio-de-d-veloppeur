@@ -15,7 +15,7 @@ const LanguageSwitch = ({ className = "" }) => {
         onClick={() => setLanguage("fr")}
         aria-pressed={language === "fr"}
         className={`px-1.5 py-0.5 rounded-sm transition-colors duration-150 cursor-pointer ${
-          language === "fr" ? "text-red-500" : "text-white/40 hover:text-white/70"
+          language === "fr" ? "text-accent" : "text-white/40 hover:text-white/70"
         }`}
       >
         FR
@@ -26,7 +26,7 @@ const LanguageSwitch = ({ className = "" }) => {
         onClick={() => setLanguage("en")}
         aria-pressed={language === "en"}
         className={`px-1.5 py-0.5 rounded-sm transition-colors duration-150 cursor-pointer ${
-          language === "en" ? "text-red-500" : "text-white/40 hover:text-white/70"
+          language === "en" ? "text-accent" : "text-white/40 hover:text-white/70"
         }`}
       >
         EN
@@ -49,7 +49,7 @@ export const Nav = () => {
           onClick={closeMenu}
           className="font-[family-name:--font-monogram] italic font-bold text-xl text-white no-underline"
         >
-          S<span className="text-red-500">K</span>
+          S<span className="text-accent">K</span>
         </a>
 
         <button
@@ -70,7 +70,7 @@ export const Nav = () => {
               <li key={key}>
                 <a
                   href={`#${key}`}
-                  className="text-sm text-white/70 no-underline transition-colors duration-150 hover:text-red-500"
+                  className="text-sm text-white/70 no-underline transition-colors duration-150 hover:text-accent"
                 >
                   {t.nav.links[key]}
                 </a>
@@ -88,7 +88,7 @@ export const Nav = () => {
               <a
                 href={`#${key}`}
                 onClick={closeMenu}
-                className="block py-2 text-base text-white/80 no-underline transition-colors duration-150 hover:text-red-500"
+                className="block py-2 text-base text-white/80 no-underline transition-colors duration-150 hover:text-accent"
               >
                 {t.nav.links[key]}
               </a>

@@ -3,6 +3,8 @@
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { useLanguage } from "../language/LanguageProvider"
+import { Section, SectionHeading } from "../ui/section"
+import { Badge } from "../ui/badge"
 
 const PROJECTS = [
   {
@@ -40,7 +42,7 @@ const RepoLink = ({ href, name, repoLabel, className }) => (
     rel="noopener noreferrer"
     aria-label={`${name} - ${repoLabel}`}
     onClick={(e) => e.stopPropagation()}
-    className={`shrink-0 text-white/80 transition-colors duration-150 hover:text-red-400 ${className}`}
+    className={`shrink-0 text-white/80 transition-colors duration-150 hover:text-accent-soft ${className}`}
   >
     <RepoIcon className="w-5 h-5" />
   </a>
@@ -83,7 +85,7 @@ const ProjectCard = ({ project, name, description, repoLabel, onOpen }) => {
       role="button"
       tabIndex={0}
       style={{ transformStyle: "preserve-3d" }}
-      className="group relative overflow-hidden min-h-[260px] flex flex-col justify-end border border-white/10 border-l-2 border-l-red-500 rounded-lg p-5 cursor-pointer will-change-transform transition-colors duration-300 hover:border-white/20"
+      className="group relative overflow-hidden min-h-[260px] flex flex-col justify-end border border-white/10 border-l-2 border-l-accent rounded-lg p-5 cursor-pointer will-change-transform transition-colors duration-300 hover:border-white/20"
     >
       <Image
         src={project.image}
@@ -101,9 +103,9 @@ const ProjectCard = ({ project, name, description, repoLabel, onOpen }) => {
       <p className="relative text-white/90 text-sm leading-relaxed mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">{description}</p>
       <div className="relative flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
-          <span key={tag} className="font-mono text-[11px] px-2 py-0.5 rounded-sm bg-black/50 text-red-300">
+          <Badge key={tag} variant="overlay">
             {tag}
-          </span>
+          </Badge>
         ))}
       </div>
     </div>
@@ -130,13 +132,13 @@ const ProjectModal = ({ project, name, description, repoLabel, closeLabel, onClo
         aria-modal="true"
         aria-label={name}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-3xl overflow-hidden rounded-lg border border-white/10 border-l-2 border-l-red-500 bg-black"
+        className="relative w-full max-w-3xl overflow-hidden rounded-lg border border-white/10 border-l-2 border-l-accent bg-black"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label={closeLabel}
-          className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white/80 transition-colors duration-150 hover:text-red-400"
+          className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white/80 transition-colors duration-150 hover:text-accent-soft"
         >
           ✕
         </button>
@@ -152,9 +154,9 @@ const ProjectModal = ({ project, name, description, repoLabel, closeLabel, onClo
           <p className="text-white/90 text-sm leading-relaxed mb-4">{description}</p>
           <div className="flex flex-wrap gap-1.5">
             {project.tags.map((tag) => (
-              <span key={tag} className="font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/10 text-red-300">
+              <Badge key={tag} variant="overlay">
                 {tag}
-              </span>
+              </Badge>
             ))}
           </div>
         </div>
@@ -170,9 +172,8 @@ export const Projects = () => {
   const selectedProject = PROJECTS.find((project) => project.key === selectedKey) ?? null
 
   return (
-    <section id="projets" className="px-5 py-16 sm:px-10 sm:py-24 border-t border-white/10">
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-red-500 mb-3">{t.projects.eyebrow}</p>
-      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">{t.projects.heading}</h2>
+    <Section id="projets">
+      <SectionHeading eyebrow={t.projects.eyebrow} heading={t.projects.heading} />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" style={{ perspective: "1200px" }}>
         {PROJECTS.map((project) => {
           const { name, description } = t.projects.items[project.key]
@@ -198,6 +199,6 @@ export const Projects = () => {
           onClose={() => setSelectedKey(null)}
         />
       )}
-    </section>
+    </Section>
   )
 }

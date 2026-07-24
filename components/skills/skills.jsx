@@ -1,6 +1,9 @@
 "use client"
 
 import { useLanguage } from "../language/LanguageProvider"
+import { Section, SectionHeading } from "../ui/section"
+import { Card } from "../ui/card"
+import { Badge } from "../ui/badge"
 
 const SKILLS = [
   { category: "Frontend", items: ["Html", "Css", "Sass", "Javascript", "React", "Redux", "Responsive design"] },
@@ -11,23 +14,20 @@ export const Skills = () => {
   const { t } = useLanguage()
 
   return (
-    <section id="competences" className="px-5 py-16 sm:px-10 sm:py-24 border-t border-white/10">
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-red-500 mb-3">{t.skills.eyebrow}</p>
-      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">{t.skills.heading}</h2>
+    <Section id="competences">
+      <SectionHeading eyebrow={t.skills.eyebrow} heading={t.skills.heading} />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {SKILLS.map((group) => (
-          <div key={group.category} className="bg-white/5 border border-white/10 rounded-lg p-5">
+          <Card key={group.category}>
             <p className="text-white font-medium mb-3">{t.skills.categories[group.category]}</p>
             <div className="flex flex-wrap gap-2">
               {group.items.map((item) => (
-                <span key={item} className="font-mono text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">
-                  {item}
-                </span>
+                <Badge key={item}>{item}</Badge>
               ))}
             </div>
-          </div>
+          </Card>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }

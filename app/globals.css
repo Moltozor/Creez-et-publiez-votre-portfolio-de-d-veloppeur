@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --color-accent: var(--color-red-500);
+  --color-accent-hover: var(--color-red-600);
+  --color-accent-soft: var(--color-red-400);
+  --color-accent-faint: var(--color-red-300);
+}
+
 @keyframes monogram-in {
   from {
     opacity: 0;

@@ -29,7 +29,7 @@ export const LoadingScreen = () => {
       aria-hidden="true"
     >
       <span className="font-[family-name:--font-monogram] italic font-bold text-6xl sm:text-8xl text-white tracking-tight animate-[monogram-in_0.7s_ease-out]">
-        S<span className="text-red-500">K</span>
+        S<span className="text-accent">K</span>
       </span>
     </div>
   )

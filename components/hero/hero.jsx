@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { ParticleBackground } from "../particle-background/particleBackground"
 import { useLanguage } from "../language/LanguageProvider"
+import { Button } from "../ui/button"
 
 // Gère l'effet de frappe au clavier à l'apparition du site
 const BASE_DELAY_MS = 75
@@ -70,12 +71,12 @@ export const Hero = () => {
   return (
     <section id="accueil" className="relative overflow-hidden min-h-[90vh] flex flex-col justify-center lg:items-center px-5 py-20 sm:px-10 sm:py-32">
       <ParticleBackground />
-      <p className="relative z-10 font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-red-500 mb-4 lg:text-center">
+      <p className="relative z-10 font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-accent mb-4 lg:text-center">
         {t.hero.eyebrow}
       </p>
       <h1 className="relative z-10 font-[family-name:--font-monogram] italic font-bold text-4xl sm:text-6xl text-white leading-tight mb-6 max-w-2xl min-h-[2.4em] sm:min-h-[1.2em] lg:text-center">
         {typed}
-        <span className="inline-block w-[3px] h-[0.9em] bg-red-500 ml-1 align-middle animate-[blink_1s_step-end_infinite]" />
+        <span className="inline-block w-[3px] h-[0.9em] bg-accent ml-1 align-middle animate-[blink_1s_step-end_infinite]" />
       </h1>
       <p
         className={`relative z-10 text-white/60 text-base sm:text-lg max-w-xl mb-8 leading-relaxed transition-all duration-700 motion-reduce:transition-none lg:text-center ${
@@ -85,18 +86,10 @@ export const Hero = () => {
         {t.hero.intro}
       </p>
       <div className="relative z-10 flex flex-wrap gap-4 lg:justify-center">
-        <a
-          href="#projets"
-          className="inline-block px-6 py-3 rounded-md bg-red-500 text-white text-sm font-medium no-underline transition-colors duration-150 hover:bg-red-600"
-        >
-          {t.hero.ctaProjects}
-        </a>
-        <a
-          href="#contact"
-          className="inline-block px-6 py-3 rounded-md border border-white/20 text-white text-sm font-medium no-underline transition-colors duration-150 hover:border-red-500"
-        >
+        <Button href="#projets">{t.hero.ctaProjects}</Button>
+        <Button href="#contact" variant="secondary">
           {t.hero.ctaContact}
-        </a>
+        </Button>
       </div>
     </section>
   )

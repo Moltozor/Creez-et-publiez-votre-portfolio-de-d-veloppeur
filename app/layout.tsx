@@ -10,7 +10,7 @@ const monogramFont = Playfair_Display({
   style: ["italic"],
 });
 
-const SITE_URL = "https://portfolio-siffleurkevin-3794s-projects.vercel.app";
+const SITE_URL = "https://siffleurkevin.com";
 const SITE_NAME = "Siffleur Kevin — Développeur Frontend";
 const SITE_DESCRIPTION =
   "Portfolio de Siffleur Kevin, développeur frontend. Découvrez mes projets web, mes compétences (React, JavaScript, Sass) et mon parcours.";
