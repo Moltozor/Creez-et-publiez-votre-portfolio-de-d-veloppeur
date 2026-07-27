@@ -51,30 +51,43 @@ const RepoLink = ({ href, name, repoLabel, className }) => (
 const ProjectCard = ({ project, name, description, repoLabel, onOpen }) => {
   const cardRef = useRef(null)
 
-  const handleMouseMove = (e) => {
+  const applyTilt = (clientX, clientY) => {
     const card = cardRef.current
     if (!card) return
     const rect = card.getBoundingClientRect()
-    const px = (e.clientX - rect.left) / rect.width
-    const py = (e.clientY - rect.top) / rect.height
+    const px = (clientX - rect.left) / rect.width
+    const py = (clientY - rect.top) / rect.height
     const rotateY = (px - 0.5) * MAX_TILT_DEG
     const rotateX = (0.5 - py) * MAX_TILT_DEG
     card.style.transition = "transform 0.05s linear"
     card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`
   }
 
-  const handleMouseLeave = () => {
+  const resetTilt = () => {
     const card = cardRef.current
     if (!card) return
     card.style.transition = "transform 0.4s ease"
     card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
   }
 
+  const handleMouseMove = (e) => applyTilt(e.clientX, e.clientY)
+  const handleMouseLeave = () => resetTilt()
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches[0]
+    if (!touch) return
+    applyTilt(touch.clientX, touch.clientY)
+  }
+  const handleTouchEnd = () => resetTilt()
+
   return (
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
       onClick={onOpen}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
