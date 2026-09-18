@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display } from "next/font/google";
 import { LanguageProvider } from "../components/language/LanguageProvider";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const monogramFont = Playfair_Display({
   variable: "--font-monogram",
@@ -92,6 +93,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <LanguageProvider>{children}</LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
